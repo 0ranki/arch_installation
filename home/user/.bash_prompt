@@ -1,0 +1,43 @@
+# Colors:
+BLACK="\[$(tput setaf 0)\]"
+RED="\[$(tput setaf 1)\]"
+GREEN="\[$(tput setaf 2)\]"
+YELLOW="\[$(tput setaf 3)\]"
+BLUE="\[$(tput setaf 4)\]"
+PURPLE="\[$(tput setaf 5)\]"
+CYAN="\[$(tput setaf 6)\]"
+WHITE="\[$(tput setaf 7)\]"
+RESET="\[$(tput sgr0)\]"
+
+BOLD="\[$(tput bold)\]"
+
+BGWHITE="\[$(tput setab 7)\]"
+BGRED="\[$(tput setab 1)\]"
+
+case $HOSTNAME in
+	host1)
+		HOSTCOLOR="$CYAN"
+		;;
+	host2)
+		HOSTCOLOR="$GREEN"
+		;;
+	host3)
+		HOSTCOLOR="$PURPLE"
+		;;
+	host4)
+		HOSTCOLOR="$YELLOW"
+		;;
+	*)
+		HOSTCOLOR="$WHITE"
+		;;
+esac
+
+if [[ "$UID" -eq 0 ]]; then
+	
+	PS1="$BOLD$BLACK$BGRED[\u\h] \$PWD \$$RESET "
+
+else
+
+	PS1="$BOLD$WHITE[\u$HOSTCOLOR@\h$WHITE] \$PWD$RESET \$ "
+                
+fi
